@@ -3,20 +3,28 @@
    ============================================ */
 
 :root {
-  --bg: #0A0E1A;
-  --bg-elev: #0F1722;
-  --bg-card: #131C2A;
-  --line: rgba(255,255,255,0.08);
-  --line-strong: rgba(255,255,255,0.16);
+  /* Brand palette (from official kit) */
+  --brand-navy: #132A4E;
+  --brand-red: #A83034;
+  --brand-red-deep: #8A2429;
+  --brand-silver: #C1C0BF;
+  --brand-blue-mid: #607EAA;
+  --brand-blue-light: #A8BCD6;
 
+  /* Page surfaces — tuned to harmonize with brand navy */
+  --bg: #08111F;
+  --bg-elev: #0E1B30;
+  --bg-card: #14253E;
+  --line: rgba(168, 188, 214, 0.10);
+  --line-strong: rgba(168, 188, 214, 0.20);
+
+  /* Text */
   --text: #F4F5F7;
-  --text-dim: #A8B0BD;
-  --text-muted: #6B7383;
+  --text-dim: #A8BCD6;
+  --text-muted: #6B7E96;
 
-  --brand-red: #C8102E;
-  --brand-red-deep: #9E0B23;
-  --brand-blue: #003F87;
-  --accent-amber: #F4A261;
+  /* Legacy alias kept for compatibility */
+  --brand-blue: var(--brand-navy);
 
   --radius-sm: 6px;
   --radius-md: 12px;
@@ -70,7 +78,7 @@ ul { list-style: none; }
   border-bottom: 1px solid transparent;
 }
 .nav.scrolled {
-  background: rgba(10,14,26,0.78);
+  background: rgba(8, 17, 31, 0.82);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   padding: 12px 0;
@@ -95,6 +103,22 @@ ul { list-style: none; }
   display: inline-flex;
   color: var(--brand-red);
   flex-shrink: 0;
+}
+.brand-logo {
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+}
+.footer-logo {
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
 }
 .brand-text {
   display: flex;
@@ -503,6 +527,72 @@ ul { list-style: none; }
 }
 
 /* ============================================
+   AUDIENCE / WHO WE WORK WITH
+   ============================================ */
+.section-audience {
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+.audience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.audience-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 44px 38px;
+  text-align: center;
+  transition: all var(--t-mid);
+  position: relative;
+  overflow: hidden;
+}
+.audience-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-red), var(--brand-blue-mid));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms cubic-bezier(.2,.7,.3,1);
+}
+.audience-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-4px);
+  background: var(--bg-card);
+}
+.audience-card:hover::before { transform: scaleX(1); }
+.audience-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 24px;
+  color: var(--brand-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.audience-icon svg { width: 100%; height: 100%; }
+.audience-card h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.audience-card p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  max-width: 36ch;
+  margin: 0 auto;
+}
+
+/* ============================================
    PRODUCTS
    ============================================ */
 .section-products {
@@ -674,6 +764,13 @@ ul { list-style: none; }
 .map-svg circle:nth-child(7) { animation-delay: 0.3s; }
 .map-svg circle:nth-child(8) { animation-delay: 0.9s; }
 .map-svg circle:nth-child(9) { animation-delay: 1.5s; }
+.map-svg .city-dot {
+  animation: cityPulse 3s infinite;
+}
+.map-svg .map-texas .city-dot:nth-of-type(2) { animation-delay: 0.5s; }
+.map-svg .map-texas .city-dot:nth-of-type(3) { animation-delay: 1.0s; }
+.map-svg .map-florida .city-dot:nth-of-type(2) { animation-delay: 0.4s; }
+.map-svg .map-florida .city-dot:nth-of-type(3) { animation-delay: 0.8s; }
 @keyframes cityPulse {
   0%, 100% { fill: var(--text-dim); }
   50% { fill: var(--brand-red); }
@@ -795,6 +892,9 @@ a.contact-card:hover {
   .product-grid,
   .why-grid {
     grid-template-columns: 1fr 1fr;
+  }
+  .audience-grid {
+    grid-template-columns: 1fr;
   }
   .contact-grid {
     grid-template-columns: 1fr;
