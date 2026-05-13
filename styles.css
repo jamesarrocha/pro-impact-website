@@ -166,19 +166,22 @@ ul { list-style: none; }
 .nav-links a:hover::after { transform: scaleX(1); }
 
 .nav-cta {
-  padding: 10px 20px;
-  border: 1px solid var(--line-strong);
+  padding: 10px 22px;
+  background: var(--brand-red);
+  border: 1px solid var(--brand-red);
   border-radius: 999px;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: var(--text);
+  color: #ffffff;
+  box-shadow: 0 4px 18px -6px rgba(168, 48, 52, 0.55);
   transition: all var(--t-fast);
 }
 .nav-cta:hover {
-  background: var(--brand-red);
-  border-color: var(--brand-red);
+  background: var(--brand-red-deep);
+  border-color: var(--brand-red-deep);
   transform: translateY(-1px);
+  box-shadow: 0 8px 24px -6px rgba(168, 48, 52, 0.7);
 }
 
 .nav-toggle {
@@ -264,12 +267,12 @@ ul { list-style: none; }
   width: 7px; height: 7px;
   background: var(--brand-red);
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(200,16,46,0.18);
+  box-shadow: 0 0 0 4px rgba(168,48,52,0.18);
   animation: pulse 2.2s infinite;
 }
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 4px rgba(200,16,46,0.18); }
-  50% { box-shadow: 0 0 0 8px rgba(200,16,46,0); }
+  0%, 100% { box-shadow: 0 0 0 4px rgba(168,48,52,0.18); }
+  50% { box-shadow: 0 0 0 8px rgba(168,48,52,0); }
 }
 
 .hero-title {
@@ -365,12 +368,12 @@ ul { list-style: none; }
 .btn-primary {
   background: var(--brand-red);
   color: white;
-  box-shadow: 0 8px 30px -8px rgba(200,16,46,0.6);
+  box-shadow: 0 8px 30px -8px rgba(168,48,52,0.6);
 }
 .btn-primary:hover {
   background: var(--brand-red-deep);
   transform: translateY(-2px);
-  box-shadow: 0 14px 36px -8px rgba(200,16,46,0.7);
+  box-shadow: 0 14px 36px -8px rgba(168,48,52,0.7);
 }
 .btn-ghost {
   background: rgba(255,255,255,0.05);
@@ -816,7 +819,7 @@ ul { list-style: none; }
   content: "";
   position: absolute;
   inset: -50%;
-  background: radial-gradient(circle at center, rgba(200,16,46,0.08), transparent 50%);
+  background: radial-gradient(circle at center, rgba(168,48,52,0.08), transparent 50%);
   pointer-events: none;
 }
 .map-svg {
