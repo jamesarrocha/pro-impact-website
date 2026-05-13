@@ -80,6 +80,49 @@
   );
   counters.forEach((c) => countObserver.observe(c));
 
+  // Spotlight effect — track cursor over [data-spotlight] sections, expose as CSS vars
+  const spotlightEls = document.querySelectorAll('[data-spotlight]');
+  spotlightEls.forEach((el) => {
+    let raf = 0;
+    const update = (clientX, clientY) => {
+      const rect = el.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      el.style.setProperty('--mx', x + 'px');
+      el.style.setProperty('--my', y + 'px');
+    };
+    el.addEventListener('mousemove', (e) => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => update(e.clientX, e.clientY));
+    }, { passive: true });
+    el.addEventListener('touchmove', (e) => {
+      if (!e.touches[0]) return;
+      el.setAttribute('data-touched', '');
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => update(e.touches[0].clientX, e.touches[0].clientY));
+    }, { passive: true });
+  });
+
+  // Text highlight marker — animate when entering viewport
+  const highlightEls = document.querySelectorAll('.text-highlight');
+  if (highlightEls.length && 'IntersectionObserver' in window) {
+    const highlightObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Slight delay so the highlight feels like a beat, not a flash
+            setTimeout(() => entry.target.classList.add('in'), 200);
+            highlightObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.55 }
+    );
+    highlightEls.forEach((el) => highlightObserver.observe(el));
+  } else {
+    highlightEls.forEach((el) => el.classList.add('in'));
+  }
+
   // Hero video playback safety (some browsers require explicit play)
   const heroVideo = document.querySelector('.hero-video');
   if (heroVideo) {
