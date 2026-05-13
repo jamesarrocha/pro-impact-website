@@ -1,6 +1,6 @@
-# Pro Impact Distribuitors — Website
+# Pro Impact Distributors — Website
 
-The marketing site for **Pro Impact Distribuitors**, an impact window and door distribution company serving Florida and Texas.
+The marketing site for **Pro Impact Distributors**, an impact window and door distribution company serving Florida and Texas.
 
 Single-page, static HTML/CSS/JS — no framework, no build step. Just open `index.html`.
 

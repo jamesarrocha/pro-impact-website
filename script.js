@@ -1,5 +1,5 @@
 // ============================================
-// PRO IMPACT DISTRIBUITORS — Site JS
+// PRO IMPACT DISTRIBUTORS — Site JS
 // ============================================
 
 (function () {
