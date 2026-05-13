@@ -425,7 +425,71 @@
           </div>
         </div>
 
-        <a href="mailto:info@proimpactdistributors.com?subject=Dealer%20Application" class="btn btn-primary btn-lg">Become a Dealer</a>
+        <div class="form-divider">
+          <span>Or send us your info and we'll reach out</span>
+        </div>
+
+        <form id="dealerForm" class="dealer-form" novalidate>
+          <!-- Web3Forms config: replace REPLACE_WITH_YOUR_KEY after signup at web3forms.com -->
+          <input type="hidden" name="access_key" value="REPLACE_WITH_YOUR_KEY" />
+          <input type="hidden" name="subject" value="New Dealer Application — Pro Impact Distributors" />
+          <input type="hidden" name="from_name" value="Pro Impact Website" />
+          <input type="checkbox" name="botcheck" class="form-honeypot" tabindex="-1" autocomplete="off" />
+
+          <div class="field-row">
+            <label class="field">
+              <span class="field-label">Full Name *</span>
+              <input type="text" name="name" required autocomplete="name" />
+            </label>
+            <label class="field">
+              <span class="field-label">Company *</span>
+              <input type="text" name="company" required autocomplete="organization" />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label class="field">
+              <span class="field-label">Email *</span>
+              <input type="email" name="email" required autocomplete="email" />
+            </label>
+            <label class="field">
+              <span class="field-label">Phone *</span>
+              <input type="tel" name="phone" required autocomplete="tel" />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label class="field">
+              <span class="field-label">State</span>
+              <select name="state">
+                <option value="Florida">Florida</option>
+                <option value="Texas">Texas</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field-label">Business Type</span>
+              <select name="business_type">
+                <option value="Contractor">Contractor</option>
+                <option value="Window & Door Company">Window &amp; Door Company</option>
+                <option value="Builder / Developer">Builder / Developer</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field field-full">
+            <span class="field-label">Tell us about your business <span class="field-optional">(optional)</span></span>
+            <textarea name="message" rows="4" autocomplete="off"></textarea>
+          </label>
+
+          <button type="submit" class="btn btn-primary btn-lg form-submit">
+            <span class="submit-label">Become a Dealer</span>
+            <svg class="submit-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+
+          <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+        </form>
       </div>
     </div>
   </section>

@@ -92,4 +92,72 @@
       if (!document.hidden) ensurePlay();
     });
   }
+
+  // Dealer application form — submits via Web3Forms (AJAX, no page reload)
+  const dealerForm = document.getElementById('dealerForm');
+  if (dealerForm) {
+    const status = document.getElementById('formStatus');
+    const submitBtn = dealerForm.querySelector('.form-submit');
+    const submitLabel = submitBtn.querySelector('.submit-label');
+    const originalLabel = submitLabel.textContent;
+
+    const setStatus = (msg, kind) => {
+      status.textContent = msg;
+      status.classList.remove('success', 'error', 'show');
+      if (kind) {
+        status.classList.add(kind, 'show');
+      }
+    };
+
+    dealerForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Native HTML5 validation first
+      if (!dealerForm.checkValidity()) {
+        dealerForm.reportValidity();
+        return;
+      }
+
+      const accessKey = dealerForm.querySelector('input[name="access_key"]').value;
+      if (!accessKey || accessKey === 'REPLACE_WITH_YOUR_KEY') {
+        setStatus(
+          "Form not yet connected. Please email info@proimpactdistributors.com or call (954) 232-2232.",
+          'error'
+        );
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitLabel.textContent = 'Sending…';
+      setStatus('', null);
+
+      try {
+        const data = new FormData(dealerForm);
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data,
+        });
+        const json = await res.json().catch(() => ({}));
+
+        if (res.ok && json.success) {
+          setStatus(
+            "Thanks. Your application is in — our team will reach out within one business day.",
+            'success'
+          );
+          dealerForm.reset();
+        } else {
+          throw new Error(json.message || 'Submission failed.');
+        }
+      } catch (err) {
+        setStatus(
+          "Something went wrong. Please email info@proimpactdistributors.com or call (954) 232-2232.",
+          'error'
+        );
+      } finally {
+        submitBtn.disabled = false;
+        submitLabel.textContent = originalLabel;
+      }
+    });
+  }
 })();

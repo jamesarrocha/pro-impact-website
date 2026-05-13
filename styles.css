@@ -827,6 +827,159 @@ a.contact-card:hover {
 }
 
 /* ============================================
+   DEALER APPLICATION FORM
+   ============================================ */
+.form-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 56px auto 32px;
+  max-width: 640px;
+  color: var(--text-muted);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+.form-divider::before,
+.form-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.form-divider span {
+  font-style: italic;
+}
+
+.dealer-form {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.field-full {
+  grid-column: 1 / -1;
+}
+.field-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.field-optional {
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  transition: border-color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast);
+}
+.field textarea {
+  resize: vertical;
+  min-height: 110px;
+  font-family: var(--font-body);
+}
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='none' stroke='%23A8BCD6' stroke-width='2' d='M1 1.5 L6 6.5 L11 1.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 44px;
+  cursor: pointer;
+}
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: var(--line-strong);
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--brand-red);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 3px rgba(168, 48, 52, 0.15);
+}
+.field input:user-invalid,
+.field select:user-invalid,
+.field textarea:user-invalid {
+  border-color: rgba(255, 100, 100, 0.5);
+}
+
+.form-submit {
+  margin-top: 8px;
+  align-self: flex-start;
+  position: relative;
+}
+.form-submit .submit-arrow {
+  transition: transform var(--t-fast);
+}
+.form-submit:hover .submit-arrow {
+  transform: translateX(4px);
+}
+.form-submit[disabled] {
+  opacity: 0.7;
+  cursor: wait;
+  pointer-events: none;
+}
+
+.form-status {
+  font-size: 14px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  display: none;
+}
+.form-status.show {
+  display: block;
+}
+.form-status.success {
+  background: rgba(96, 126, 170, 0.12);
+  border: 1px solid rgba(96, 126, 170, 0.35);
+  color: var(--brand-blue-light);
+}
+.form-status.error {
+  background: rgba(168, 48, 52, 0.12);
+  border: 1px solid rgba(168, 48, 52, 0.45);
+  color: #FCA5A5;
+}
+
+/* ============================================
    FOOTER
    ============================================ */
 .footer {
@@ -898,6 +1051,13 @@ a.contact-card:hover {
   }
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+  .form-submit {
+    align-self: stretch;
+    justify-content: center;
   }
   .footer-grid {
     flex-direction: column;
